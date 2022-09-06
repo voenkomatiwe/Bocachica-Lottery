@@ -318,33 +318,38 @@ impl Contract {
     #[allow(dead_code)]
     #[private]
     pub fn get_winner_ticket(&mut self, auction_id: u64) -> bool {
-        let auction: Auction = self
+        let mut auction: Auction = self
             .auctions
             .get(&auction_id)
             .expect("ERR_NO_AUCTION")
             .into();
 
-        env::random_seed();
+        let seed: [u8; 32] = env::random_seed().try_into().unwrap();
+
+        let mut num: u64 = seed[0] as u64 * seed[1] as u64;
+
+        while num > auction.lottery_tickets.len() {
+            if seed[2] > 1 {
+                num = num / seed[2] as u64;
+            } else if seed[3] > 1 {
+                num = num / seed[2] as u64;
+            } else {
+                num = num / 2;
+            }
+        }
 
         let nft_id = format!("{}{}", auction.nft_contract_id, auction.nft_token_id);
         self.nft_on_sale.remove(&nft_id);
+
+        auction.winner_id = auction
+            .lottery_tickets
+            .get(&num)
+            .expect("ERR_NO_SUCH_TICKET");
+        auction.winner_bid = num as u128;
 
         self.auctions
             .insert(&auction_id, &VAuction::Current(auction));
 
         true
-    }
-
-    #[allow(dead_code)]
-    pub fn get_rand(&self, max_num: u64) -> u64 {
-        let seed: [u8; 32] = env::random_seed().try_into().unwrap();
-
-        let mut num: u64 = seed[0] as u64 * seed[1] as u64;
-
-        while num > max_num {
-            num = num / seed[2] as u64;
-        }
-
-        num
     }
 }
