@@ -1,0 +1,17 @@
+[package]
+name = "auction"
+version = "1.0.0"
+authors = ["HAPI"]
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { version = "4.0.0-pre.6" }
+near-contract-standards = "4.0.0-pre.6"
+
+[dev-dependencies]
+near-sdk-sim = "4.0.0-pre.6"
+env_logger = { version = "0.9.0", default-features = false }
