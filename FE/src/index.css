@@ -1,0 +1,19 @@
+* {
+  font-family: 'Inter';
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  background-color: #131313;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  color: white;
+}
+
+@media only screen and (max-width: 37.5rem) {
+  #root {
+    background-size: 35.375rem;
+  }
+}
