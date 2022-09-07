@@ -122,7 +122,7 @@ impl Contract {
         while amount >= ticket_price {
             auction
                 .lottery_tickets
-                .insert(&(self.get_num_tickets(bid.auction_id) + 1), &bid.sender_id);
+                .insert(&(auction.lottery_tickets.len()), &bid.sender_id);
 
             auction.collected_amount += ticket_price;
             amount = amount - ticket_price;

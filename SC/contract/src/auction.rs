@@ -174,7 +174,7 @@ impl From<VAuction> for AuctionOutput {
                 start_date: U64(auction.start_date),
                 end_date: U64(auction.end_date),
                 collected_amount: U128(auction.collected_amount),
-                num_auction_accounts: auction.auction_accounts.len(),
+                num_auction_accounts: auction.lottery_tickets.len(),
                 auction_step: auction.auction_step.map(U128),
                 auction_min_step: auction.auction_min_step.map(U128),
                 initial_price: U128(auction.initial_price),
