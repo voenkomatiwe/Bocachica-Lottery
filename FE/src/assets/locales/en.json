@@ -1,0 +1,108 @@
+{
+  "burgerMenu": {
+    "about": "About Boca Chica NFT Auction",
+    "whitepaper": "Whitepaper",
+    "referralProgram": "Referral Program",
+    "risksAndRules": "Risks and Rules",
+    "openMoon": "Open Boca Chica Moon",
+    "openMars": "Open Boca Chica Mars"
+  },
+  "action": {
+    "connectWallet": "Connect to NEAR",
+    "bid": "Place a Bid",
+    "disconnect": "Disconnect",
+    "raiseMyBid": "Yes, Raise My Bid",
+    "cancel": "Cancel",
+    "claimNFT": "Claim NFT",
+    "claim": "Claim {{dynamicValue}} Back",
+    "back": "Back",
+    "ok": "Ok",
+    "apply": "Apply",
+    "change": "Change",
+    "buyOrDeposit": "Buy / Deposit {{dynamicValue}}",
+    "buyTicket": "Buy Ticket"
+  },
+  "homePage": {
+    "title": "NEAR powered NFT Auction"
+  },
+  "footer": {
+    "launchpad": "Bocachica Auction",
+    "copyright": "Copyright {{dynamicValue}}"
+  },
+  "status": {
+    "open": "Open",
+    "soon": "Soon",
+    "ended": "Ended",
+    "endsIn": "Ends in",
+    "leftToStart": "Left to start"
+  },
+  "bid": {
+    "currentBid": "Current Bid",
+    "yourBid": "Your Bid",
+    "minMarkup": "Min Markup"
+  },
+  "miniCardFooter": {
+    "claim": "You can claim your NFT",
+    "refund": "You can claim your {{dynamicValue}} Back"
+  },
+  "nftData": {
+    "contractAddress": "Contract Address",
+    "owner": "Owner",
+    "tokenID": "Token ID",
+    "rewardReceived": "Reward Received"
+  },
+  "modals": {
+    "user": "User",
+    "yourBid": "Your Bid",
+    "availableBalance": "Available Balance",
+    "locked": "Locked",
+    
+    "bedIsHighest": "Your bid is the highest",
+    "agreement": "Are you sure you want to raise your bid?",
+
+    "successfullyBid": "You have successfully placed a bid!",
+    "lockedUntilTheEnd": "Locked until the end of the auction",
+    
+    "filters": "Filters",
+    "yourPurchase": "Your Purchase"
+  },
+  "claim": {
+    "locked": "Locked",
+    "finalBid": "Final Bid",
+    "congratulations": "Congratulations!",
+    "claimNFT": "Your bet paid off, claim your NFT",
+    "refund": "Your bet did not pay off, but you can claim your money back"
+  },
+  "toast" : {
+    "transactionFailed": "Transaction failed",
+    "userRejected": "User rejected",
+    "bidFailed": "Bid failed",
+    "claimNFT": "Claim NFT",
+    "claimRefund": "Claim refund",
+    "copy": "Copied",
+    "copyNotAvailable": "Copy to clipboard not available"
+  },
+  "noResults" : {
+    "title": "No results for {{dynamicValue}}",
+    "label": "We couldn't find anything matching your search. Try again with a different term."
+  },
+  "filter": {
+    "status" : "Status",
+    "poolParticipation" : "Pool Participation",
+    "result" : "Result"
+  },
+  "loading": "Loading...",
+  "helperText": {
+    "lockedAmount": "{{dynamicValue}} will be locked till the end of the auction",
+    "lowBid": "The bid must be higher than the current one",
+    "lowBalance": "Insufficient funds"
+  },
+  "lottery" : {
+    "totalTicket": "Total Ticket",
+    "ticketPrice": "Ticket Price",
+    "yourTicket": "Your Ticket",
+    "successfullyBoughtTicket": "You have successfully bought a ticket!",
+    "chance": "Your chance of winning",
+    "ticket": "TICKET"
+  }
+}
