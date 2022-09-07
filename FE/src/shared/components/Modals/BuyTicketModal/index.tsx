@@ -3,13 +3,14 @@ import { useCallback, useState } from 'react';
 
 import { IAuction } from 'providers/interfaces';
 import { FungibleTokenContract } from 'services/contracts';
+import { calcWinningChance } from 'shared/calculation';
 import Buttons from 'shared/components/Buttons';
 import InputPanel from 'shared/components/InputPanel';
 import ModalWrapper from 'shared/components/Modals/ModalWrapper';
 import Translate from 'shared/components/Translate';
 import { EDimensions, ZERO } from 'shared/constant';
 import useWindowDimensions from 'shared/hooks/useWindowDimensions';
-import { formatTokenAmount, getHelperTextForBuyTicket } from 'shared/utils';
+import { displayBid, formatTokenAmount, getHelperTextForBuyTicket } from 'shared/utils';
 import { getBidDetailsArray, increaseValueArray } from 'shared/utils/getBidDetailsArray';
 
 import HelperText from './HelperText';
@@ -58,6 +59,7 @@ export default function BuyTicketModal({
     const priceTicket = Big(formattedAuctionStep).mul(ticketAmount).toFixed();
     handleConfirm(priceTicket);
   }, [auction.auctionStep, handleConfirm, ticketAmount, token.metadata.decimals]);
+  const winningChance = calcWinningChance(auction.totalTickets || 0, auction.userTicket || 0, ticketAmount);
   return (
     <ModalWrapper
       closeModal={closeModal}
@@ -100,10 +102,14 @@ export default function BuyTicketModal({
         balance={balance}
         auctionType={auction.auctionType}
       />
+      <styles.WinningChance>
+        <Translate
+          value="helperText.winningChance"
+          dynamicValue={displayBid(winningChance)}
+        />
+      </styles.WinningChance>
       <HelperText
         helper={helper}
-        totalTicket={auction.totalTickets || 0}
-        yourTicket={auction.userTicket || 0}
         ticketAmount={ticketAmount}
         auctionStep={formatAuctionStep}
         tokenSymbol={token.metadata.symbol}

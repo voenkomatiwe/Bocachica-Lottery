@@ -50,3 +50,12 @@ export const calcUserTicket = (ticketIdAndUserArray: [string, string][], account
   }, new Big(0));
   return Number(userTicket.toFixed());
 };
+
+export const calcWinningChance = (totalTicket: number, yourTicket: number, ticketAmount: string) => {
+  const sumYourTicket = Big(ticketAmount || ZERO).plus(yourTicket);
+  const winningChance = Big(totalTicket).eq(ZERO)
+    ? ZERO
+    : Big(sumYourTicket).div(totalTicket).mul(100).toFixed();
+  const hightChance = Big(winningChance).gte(101) ? '100' : winningChance;
+  return hightChance;
+};

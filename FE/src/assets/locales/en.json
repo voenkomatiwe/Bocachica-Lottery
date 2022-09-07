@@ -96,7 +96,8 @@
     "lockedAmount": "{{dynamicValue}} will be locked till the end of the auction",
     "lowBid": "The bid must be higher than the current one",
     "lowBalance": "Insufficient funds",
-    "willPay": "You will pay {{dynamicValue}}"
+    "willPay": "You will pay {{dynamicValue}}",
+    "winningChance": "Winning chance {{dynamicValue}}%"
   },
   "lottery" : {
     "totalTicket": "Total Ticket",

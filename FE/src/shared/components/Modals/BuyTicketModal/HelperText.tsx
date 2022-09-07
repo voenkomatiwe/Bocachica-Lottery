@@ -8,8 +8,6 @@ import styles from './styles';
 
 interface IHelperText {
   helper: EInputHelperText | null,
-  totalTicket: number,
-  yourTicket: number,
   auctionStep: string,
   ticketAmount: string,
   tokenSymbol: string,
@@ -17,8 +15,6 @@ interface IHelperText {
 
 export default function HelperText({
   helper,
-  totalTicket,
-  yourTicket,
   auctionStep,
   ticketAmount,
   tokenSymbol,
@@ -32,6 +28,7 @@ export default function HelperText({
             value="helperText.willPay"
             dynamicValue={`${displayBid(priceTicket)} ${tokenSymbol}`}
           />
+
         </styles.HelperText>
       );
     }

@@ -198,7 +198,7 @@ export default function CardPage(): JSX.Element {
           }
 
           {
-            status !== EStatus.Ended && (
+            status === EStatus.Ended && (
             <>
               <Timestamp
                 title={StatusTimeLocales[status]}
@@ -208,7 +208,7 @@ export default function CardPage(): JSX.Element {
               <styles.WrapperButtons>
                 <Button
                   typeButton={typeButton}
-                  disabled={status !== EStatus.Open}
+                  // disabled={status !== EStatus.Open}
                   handleConfirm={() => {
                     if (auction.auctionType === EAuctionType.Auction) {
                     // todo: placeBid

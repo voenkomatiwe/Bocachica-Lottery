@@ -125,6 +125,16 @@ const HelperText = styled.div<{ isErrorColor?: boolean }>`
   }
 `;
 
+const WinningChance = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: .75rem;
+  line-height: .938rem;
+`;
+
 export default {
   Header,
   BidWrapper,
@@ -139,4 +149,5 @@ export default {
   HelperText,
   BidIncreaseWrapper,
   IncreaseBtn,
+  WinningChance,
 };
