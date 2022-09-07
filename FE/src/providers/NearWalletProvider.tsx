@@ -42,7 +42,7 @@ export function WalletProvider({ children }:{ children: JSX.Element }) {
         headers: {},
         keyStore: new keyStores.BrowserLocalStorageKeyStore(),
       });
-      const newWallet = new WalletConnection(newNear, config.contractId);
+      const newWallet = new WalletConnection(newNear, config.lotteryContractId);
       setNear(newNear);
       setWallet(newWallet);
     };

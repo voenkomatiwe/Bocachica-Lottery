@@ -21,8 +21,8 @@ const getAuctionData = (
   const currentBid = getCurrentBid(auction.initialPrice, auction.winnerBid);
 
   const bidArray = getBidDetailsArray({
-    currentBid,
-    yourBid: auction.userData?.amount,
+    totalTickets: auction.totalTickets,
+    userTicket: auction.userTicket,
     tickerPrice: auction.auctionStep,
     token,
     isShowingMinMarkup,

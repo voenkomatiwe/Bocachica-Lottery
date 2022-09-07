@@ -5,14 +5,14 @@ import { useWalletData } from 'providers/NearWalletProvider';
 import { useService } from 'providers/ServiceProvider';
 import { UPDATE_AUCTION_INTERVAL, ZERO } from 'shared/constant';
 import {
-  checkAuctionShouldUpdate, EStatus, formatAuction,
+  checkAuctionShouldUpdate, EStatus, formatAuction, getTypeClaim,
 } from 'shared/utils';
 
 const useAuctionDynamicData = (auction: IAuction, status: EStatus) => {
   const { isSignedIn, accountId } = useWalletData();
   const { lotteryContract } = useService();
 
-  const [winnerBid, setWinnerBid] = useState<string>(auction.winnerBid);
+  const [totalTickets, setTotalTickets] = useState<number>(auction.totalTickets);
   const [yourBid, setYourBid] = useState<string>(auction.userData?.amount || ZERO);
   const [typeClaim, setTypeClaim] = useState<ETypeClaim>(auction.typeClaim);
 
@@ -24,7 +24,10 @@ const useAuctionDynamicData = (auction: IAuction, status: EStatus) => {
         const updatedAuction = await lotteryContract.getAuction(auction.id);
         if (!updatedAuction) return;
         const newUpdatedAuction = formatAuction(updatedAuction);
-        setWinnerBid(newUpdatedAuction.winnerBid);
+        if (isSignedIn) {
+          newUpdatedAuction.typeClaim = getTypeClaim(newUpdatedAuction, accountId);
+        }
+        setTotalTickets(newUpdatedAuction.totalTickets);
         setYourBid(newUpdatedAuction.userData?.amount || ZERO);
         setTypeClaim(newUpdatedAuction.typeClaim);
       } catch (e){
@@ -36,7 +39,7 @@ const useAuctionDynamicData = (auction: IAuction, status: EStatus) => {
     return () => clearInterval(interval);
   }, [lotteryContract, isSignedIn, auction, accountId, status]);
 
-  return ({ winnerBid, yourBid, typeClaim });
+  return ({ totalTickets, yourBid, typeClaim });
 };
 
 export default useAuctionDynamicData;

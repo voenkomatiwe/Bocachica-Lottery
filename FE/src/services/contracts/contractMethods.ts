@@ -26,4 +26,5 @@ export const lotteryViewMethods: string[] = [
   'get_join_fee',
   'get_num_tickets',
   'get_ticket_info',
+  'get_tickets',
 ];

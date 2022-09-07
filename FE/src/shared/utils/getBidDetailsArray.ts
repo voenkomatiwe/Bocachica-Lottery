@@ -12,16 +12,17 @@ import { copy, isNotNullOrUndefined } from './index';
 import { trimString } from './stringOperation';
 
 interface IBidDetails {
-  currentBid: string,
+  currentBid?: string,
   yourBid?: string,
   minMarkup?: string | null,
   tickerPrice?: string | null,
   token: FungibleTokenContract,
   isShowingMinMarkup?: boolean,
   auctionType: EAuctionType,
+  totalTickets?: number
+  userTicket?: number,
 }
 interface IColumn {
-
   title: ITranslationKeys,
   value: string,
   symbol?: string,
@@ -46,6 +47,8 @@ export const getBidDetailsArray = ({
   tickerPrice,
   token,
   auctionType,
+  totalTickets,
+  userTicket,
   isShowingMinMarkup = true,
 }: IBidDetails): IBidArray[] => {
   switch (auctionType) {
@@ -54,7 +57,7 @@ export const getBidDetailsArray = ({
       const bidArray = [
         generateColumn({
           title: 'lottery.totalTicket',
-          value: '1234', // todo add total ticket
+          value: totalTickets?.toFixed() || '-',
         }),
         generateColumn({
           title: 'lottery.ticketPrice',
@@ -64,14 +67,14 @@ export const getBidDetailsArray = ({
         }),
         generateColumn({
           title: 'lottery.yourTicket',
-          value: '2', // todo add your ticket
-          condition: Big(yourBid || ZERO).gt(ZERO),
+          value: userTicket?.toFixed() || '-',
+          condition: Big(userTicket || ZERO).gt(ZERO),
         }),
       ].filter(isNotNullOrUndefined);
       return bidArray;
     }
     default: {
-      const winnerBid = displayBid(currentBid, token.metadata.decimals);
+      const winnerBid = displayBid(currentBid || ZERO, token.metadata.decimals);
       const formattedYourBid = displayBid(yourBid || ZERO, token.metadata.decimals);
       const formattedMinMarkup = formatTokenAmount(minMarkup || ZERO, token.metadata.decimals);
       const auctionMinStep = minMarkup ? formattedMinMarkup : '-';
@@ -149,7 +152,7 @@ export const nftData = (
     },
     {
       title: 'nftData.rewardReceived',
-      value: 'Yes', // todo
+      value: 'No', // todo
       show: auctionType === EAuctionType.Lottery,
     },
   ];

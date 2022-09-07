@@ -44,9 +44,9 @@ export const checkInvalidAmount = (
 export const nanosecondsToMilliSeconds = (date: number): number => date / MICRO_SECOND;
 
 export const calcUserTicket = (ticketIdAndUserArray: [string, string][], accountId: string) => {
-  const userTicket = ticketIdAndUserArray.reduce((sum, [, accountIdFromArray], index) => {
-    if (accountId === accountIdFromArray) return sum;
-    return Big(index).plus(sum);
+  const userTicket = ticketIdAndUserArray.reduce((sum, [, accountIdFromArray]) => {
+    if (accountId !== accountIdFromArray) return sum;
+    return Big(sum).plus(1);
   }, new Big(0));
   return Number(userTicket.toFixed());
 };

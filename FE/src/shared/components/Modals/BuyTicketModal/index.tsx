@@ -10,7 +10,7 @@ import Translate from 'shared/components/Translate';
 import { EDimensions, ZERO } from 'shared/constant';
 import useWindowDimensions from 'shared/hooks/useWindowDimensions';
 import { formatTokenAmount, getHelperTextForBuyTicket } from 'shared/utils';
-import { getBidDetailsArray, getCurrentBid, increaseValueArray } from 'shared/utils/getBidDetailsArray';
+import { getBidDetailsArray, increaseValueArray } from 'shared/utils/getBidDetailsArray';
 
 import HelperText from './HelperText';
 import styles from './styles';
@@ -33,14 +33,13 @@ export default function BuyTicketModal({
   auction,
 }: IBuyTicketModal): JSX.Element{
   const dimension = useWindowDimensions();
-  const currentBid = getCurrentBid(auction.initialPrice, auction.winnerBid);
   const [ticketAmount, setTicketAmount] = useState<string>('');
 
   const increaseArr = increaseValueArray('Ticket');
   const bidArray = getBidDetailsArray({
-    currentBid,
+    totalTickets: auction.totalTickets,
+    userTicket: auction.userTicket,
     tickerPrice: auction.auctionStep,
-    yourBid: auction.userData?.amount,
     token,
     auctionType: auction.auctionType,
   });

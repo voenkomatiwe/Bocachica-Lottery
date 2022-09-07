@@ -44,7 +44,6 @@ export interface IAuction {
   nftContractId: string,
   nftTokenId: string,
   nftClaimed: boolean,
-  numAuctionAccounts: number,
   winnerAccountId: string,
   winnerBid: string,
   addedTime: string | null,
@@ -61,7 +60,7 @@ export interface IAuction {
   filterByResult?: EFilterByResult,
   links: ILinks,
   auctionType: EAuctionType,
-  totalTickets?: number,
+  totalTickets: number,
   ticketIdAndUserArray?: [string, string][]
   userTicket?: number,
 }

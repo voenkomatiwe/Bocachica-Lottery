@@ -8,6 +8,7 @@ import { calcUserTicket } from 'shared/calculation';
 import { DEFAULT_PAGE_LIMIT, NEAR_TOKEN_ID } from 'shared/constant';
 import {
   formatAuction,
+  getTypeClaim,
   isNotNullOrUndefined,
   onlyUniqueValues,
   toMap,
@@ -150,7 +151,7 @@ export async function retrieveAuctionArray(
           lotteryPages,
           lotteryContract,
         );
-        return formatAuction(auction, ticketIdAndUserArray, totalTickets);
+        return formatAuction(auction, ticketIdAndUserArray);
       }
 
       return formatAuction(auction);
@@ -166,12 +167,14 @@ export async function retrieveUserData(
     return await Promise.all(
       newAuctionArray.map(async (newAuction) => {
         let userTicket: number | undefined;
+        const typeClaim = getTypeClaim(newAuction, accountId);
         if (newAuction.auctionType === EAuctionType.Lottery && newAuction.ticketIdAndUserArray) {
           userTicket = calcUserTicket(newAuction.ticketIdAndUserArray, accountId);
         }
         return {
           ...newAuction,
           userTicket,
+          typeClaim,
         };
       }),
     );

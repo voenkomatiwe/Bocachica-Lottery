@@ -101,15 +101,11 @@ export default function CardPage(): JSX.Element {
               lotteryContract,
             );
           }
-          const [
-            retrievedBalance,
-          ] = await Promise.all([
-            await token.getBalanceOf({ accountId }) || '0',
-          ]);
+          const retrievedBalance = await token.getBalanceOf({ accountId }) || '0';
           newBalance = retrievedBalance;
         }
-        const newUpdatedAuction = formatAuction(updatedAuction, ticketIdAndUserArray, totalTickets);
-        if (newUpdatedAuction.winnerBid === auction.winnerBid
+        const newUpdatedAuction = formatAuction(updatedAuction, ticketIdAndUserArray);
+        if (newUpdatedAuction.totalTickets === auction.totalTickets
           && newUpdatedAuction.typeClaim === auction.typeClaim
           && newBalance === balance
         ) return;

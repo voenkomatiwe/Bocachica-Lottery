@@ -9,7 +9,7 @@ import Translate from 'shared/components/Translate';
 import useAuctionDynamicData from 'shared/hooks/useAuctionDynamicData';
 import useDateAndStatus from 'shared/hooks/useDateAndStatus';
 import useImageDataUpload from 'shared/hooks/useImageDataUpload';
-import { getBidDetailsArray, getCurrentBid } from 'shared/utils/getBidDetailsArray';
+import { getBidDetailsArray } from 'shared/utils/getBidDetailsArray';
 
 import Footer from './Footer';
 import styles from './styles';
@@ -24,21 +24,20 @@ export default function Card({ auction }: { auction: IAuction }): JSX.Element | 
     auction.endDate,
     auction.status,
   );
-  const { winnerBid, yourBid, typeClaim } = useAuctionDynamicData(auction, status);
+  const { totalTickets, typeClaim } = useAuctionDynamicData(auction, status);
   const contractNft = nfts[auction.nftContractId] || null;
   const nft = contractNft?.tokenMetadata?.[auction.nftTokenId] || null;
   const token = tokens[auction.depositTokenId] || null;
   const { media, isLoading, typeImage } = useImageDataUpload(nft.metadata.media, nft.metadata.mime_type);
 
   if (!nft || !token || !contractNft) return null;
-  const currentBid = getCurrentBid(auction.initialPrice, winnerBid);
 
   const bidArray = getBidDetailsArray({
-    currentBid,
-    yourBid,
     token,
     auctionType: auction.auctionType,
     isShowingMinMarkup,
+    totalTickets,
+    userTicket: auction.userTicket,
   });
 
   return (

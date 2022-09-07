@@ -29,7 +29,7 @@ import { parseTokenAmount } from 'shared/utils';
 import { ftChangeMethods, ftViewMethods } from './contractMethods';
 
 const config = getConfig();
-const CONTRACT_ID = config.contractId;
+const CONTRACT_ID = config.lotteryContractId;
 
 const NEAR_TOKEN = {
   decimals: NEAR_DECIMALS,

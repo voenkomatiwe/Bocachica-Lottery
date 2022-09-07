@@ -29,7 +29,7 @@ export default function HelperText({
       return (
         <styles.HelperText>
           <Translate
-            value="helperText.lockedAmount"
+            value="helperText.willPay"
             dynamicValue={`${displayBid(priceTicket)} ${tokenSymbol}`}
           />
         </styles.HelperText>

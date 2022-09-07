@@ -8,7 +8,6 @@ import { getStatus } from './getTimeAndStatus';
 const formatAuction = (
   auction: IAuctionOutput,
   ticketIdAndUserArray?: [string, string][],
-  totalTickets?: number,
 ): IAuction => {
   const startDate = nanosecondsToMilliSeconds(auction.start_date);
   const endDate = nanosecondsToMilliSeconds(auction.end_date);
@@ -26,7 +25,7 @@ const formatAuction = (
     nftClaimed: auction.nft_claimed,
     claimAvailable: auction.claim_available,
     refundAvailable: auction.refund_available,
-    numAuctionAccounts: auction.num_auction_accounts,
+    totalTickets: auction.num_auction_accounts, //
     winnerAccountId: auction.winner_id,
     winnerBid: auction.winner_bid,
     addedTime: auction.added_time,
@@ -42,7 +41,6 @@ const formatAuction = (
       telegramLink: auction.metadata.telegram_link,
     },
     auctionType: auction.auction_type,
-    totalTickets,
     ticketIdAndUserArray,
   };
 };
