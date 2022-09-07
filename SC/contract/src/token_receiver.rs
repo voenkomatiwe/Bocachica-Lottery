@@ -118,14 +118,18 @@ impl Contract {
 
         assert!(bid.amount >= ticket_price, "ERROR_DEPOSIT");
 
-        auction
-            .lottery_tickets
-            .insert(&self.get_num_tickets(bid.auction_id), &bid.sender_id);
+        let mut amount = bid.amount;
+        while amount >= ticket_price {
+            auction
+                .lottery_tickets
+                .insert(&(self.get_num_tickets(bid.auction_id) + 1), &bid.sender_id);
 
-        auction.collected_amount += ticket_price;
+            auction.collected_amount += ticket_price;
+            amount = amount - ticket_price;
+        }
         self.auctions
             .insert(&bid.auction_id, &VAuction::Current(auction));
-        bid.amount - ticket_price
+        amount
     }
 }
 
