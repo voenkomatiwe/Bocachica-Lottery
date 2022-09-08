@@ -1,1 +1,1 @@
-Bocachica Auction Frontend Repository
+Bocachica Auction-Lottery Frontend Repository
