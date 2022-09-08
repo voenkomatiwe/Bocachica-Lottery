@@ -317,12 +317,24 @@ impl Contract {
 
     #[allow(dead_code)]
     #[private]
-    pub fn get_winner_ticket(&mut self, auction_id: u64) -> bool {
+    pub fn get_winner_ticket(&mut self, auction_id: u64) -> (u64, AccountId) {
         let mut auction: Auction = self
             .auctions
             .get(&auction_id)
             .expect("ERR_NO_AUCTION")
             .into();
+
+        assert_eq!(
+            auction.auction_type,
+            AuctionType::Lottery,
+            "ERR: no such method for Auction type"
+        );
+
+        assert_eq!(
+            auction.winner_id,
+            env::current_account_id(),
+            "ERR: winner already determined"
+        );
 
         let seed: [u8; 32] = env::random_seed().try_into().unwrap();
 
@@ -341,15 +353,16 @@ impl Contract {
         let nft_id = format!("{}{}", auction.nft_contract_id, auction.nft_token_id);
         self.nft_on_sale.remove(&nft_id);
 
-        auction.winner_id = auction
+        let winner_id = auction
             .lottery_tickets
             .get(&num)
             .expect("ERR_NO_SUCH_TICKET");
+        auction.winner_id = winner_id.clone();
         auction.winner_bid = num as u128;
 
         self.auctions
             .insert(&auction_id, &VAuction::Current(auction));
 
-        true
+        (num, winner_id)
     }
 }
