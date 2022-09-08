@@ -1,6 +1,6 @@
 {
   "burgerMenu": {
-    "about": "About Boca Chica NFT Auction",
+    "about": "About Boca Chica NFT Lottery",
     "whitepaper": "Whitepaper",
     "referralProgram": "Referral Program",
     "risksAndRules": "Risks and Rules",
@@ -24,10 +24,10 @@
     "winnerTicket": "Get Winner Ticket"
   },
   "homePage": {
-    "title": "NEAR powered NFT Auction"
+    "title": "NEAR powered NFT Lottery"
   },
   "footer": {
-    "launchpad": "Bocachica Auction",
+    "launchpad": "Bocachica Lottery",
     "copyright": "Copyright {{dynamicValue}}"
   },
   "status": {
