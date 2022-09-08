@@ -53,9 +53,10 @@ export const calcUserTicket = (ticketIdAndUserArray: [string, string][], account
 
 export const calcWinningChance = (totalTicket: number, yourTicket: number, ticketAmount: string) => {
   const sumYourTicket = Big(ticketAmount || ZERO).plus(yourTicket);
+  const sumTotalTicket = Big(totalTicket || ZERO).plus(ticketAmount || ZERO);
   const winningChance = Big(totalTicket).eq(ZERO)
     ? ZERO
-    : Big(sumYourTicket).div(totalTicket).mul(100).toFixed();
+    : Big(sumYourTicket).div(sumTotalTicket).mul(100).toFixed();
   const hightChance = Big(winningChance).gte(101) ? '100' : winningChance;
   return hightChance;
 };
