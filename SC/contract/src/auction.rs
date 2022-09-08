@@ -316,7 +316,6 @@ impl Contract {
     }
 
     #[allow(dead_code)]
-    #[private]
     pub fn get_winner_ticket(&mut self, auction_id: u64) -> (u64, AccountId) {
         let mut auction: Auction = self
             .auctions
@@ -338,7 +337,7 @@ impl Contract {
 
         assert!(
             auction.collected_amount >= auction.buyout_price.expect("ERR: no target amount"),
-            "ERR: winner already determined"
+            "ERR: target amount not collected"
         );
 
         let seed: [u8; 32] = env::random_seed().try_into().unwrap();
