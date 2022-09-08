@@ -33,6 +33,7 @@ pub trait Owner {
     fn update_auction_claim_available(&mut self, auction_id: u64, claim_available: bool);
     fn remove_auction(&mut self, auction_id: u64);
     fn update_metadata(&mut self, auction_id: u64, metadata: Metadata);
+    fn update_auction_status(&mut self, auction_id: u64, status: AuctionStatus);
 }
 
 #[near_bindgen]
@@ -179,6 +180,23 @@ impl Owner for Contract {
             .expect("ERR_NO_AUCTION")
             .into();
         auction.metadata.set(&VMetadata::Current(metadata));
+        self.auctions
+            .insert(&auction_id, &VAuction::Current(auction));
+    }
+
+    fn update_auction_status(&mut self, auction_id: u64, status: AuctionStatus) {
+        self.assert_owner();
+
+        let mut auction: Auction = self
+            .auctions
+            .get(&auction_id)
+            .expect("ERR_NO_AUCTION")
+            .into();
+
+        match status {
+            AuctionStatus::Received => panic!("ERR: only winner can accept"),
+            _ => auction.auction_status = status,
+        }
         self.auctions
             .insert(&auction_id, &VAuction::Current(auction));
     }

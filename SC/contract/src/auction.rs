@@ -336,6 +336,11 @@ impl Contract {
             "ERR: winner already determined"
         );
 
+        assert!(
+            auction.collected_amount >= auction.buyout_price.expect("ERR: no target amount"),
+            "ERR: winner already determined"
+        );
+
         let seed: [u8; 32] = env::random_seed().try_into().unwrap();
 
         let mut num: u64 = seed[0] as u64 * seed[1] as u64;
