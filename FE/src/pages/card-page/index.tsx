@@ -227,7 +227,7 @@ export default function CardPage(): JSX.Element {
             )
           }
           {
-            status === EStatus.Ended && auction.winnerAccountId !== config.lotteryContractId && (
+            status === EStatus.Ended && auction.winnerAccountId === config.lotteryContractId && (
               <styles.WrapperButtons>
                 <Button
                   typeButton={ETypeButton.WINNER_TICKET}
