@@ -79,4 +79,5 @@ export type AuctionServiceContextType = {
   lotteryContract?: LotteryContract;
   claimNFT: (auctionId: number) => Promise<void>;
   buyTicket: (balance: string, auction: IAuction, token: FungibleTokenContract) => Promise<void>;
+  getWinnerTicket: (auctionId: number) => Promise<void>;
 };

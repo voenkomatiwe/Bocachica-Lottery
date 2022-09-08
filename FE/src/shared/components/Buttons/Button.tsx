@@ -17,6 +17,8 @@ const currentTitle = (variant: ETypeButton) => {
       return <Translate value="action.bid" />;
     case ETypeButton.BUY_TICKET:
       return <Translate value="action.buyTicket" />;
+    case ETypeButton.WINNER_TICKET:
+      return <Translate value="action.winnerTicket" />;
     default:
       return null;
   }

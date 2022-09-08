@@ -243,7 +243,7 @@ export default function useTransactionHash(
 
       if (transactions) {
         const provider = new providers.JsonRpcProvider(
-          config.nodeUrl,
+          { url: config.nodeUrl },
         );
         try {
           Promise.all(transactions.split(',').map(

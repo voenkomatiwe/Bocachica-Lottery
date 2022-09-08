@@ -9,6 +9,7 @@ import { ETypeClaim, IAuction } from 'providers/interfaces';
 import { useWalletData } from 'providers/NearWalletProvider';
 import { useService } from 'providers/ServiceProvider';
 import { APP_ROUTES } from 'routes/constant';
+import getConfig from 'services/config';
 import { FungibleTokenContract } from 'services/contracts';
 import useTransactionHash from 'services/helpers/receiptsService';
 import { EAuctionType } from 'services/interfaces';
@@ -41,10 +42,14 @@ import {
 import Footer from './Footer';
 import styles from './styles';
 
+const config = getConfig();
+
 export default function CardPage(): JSX.Element {
   const { modal } = useModalStore();
   const { wallet, isSignedIn, accountId } = useWalletData();
-  const { lotteryContract, buyTicket, claimNFT } = useService();
+  const {
+    lotteryContract, buyTicket, claimNFT, getWinnerTicket,
+  } = useService();
   const {
     auctions,
     loading,
@@ -198,7 +203,7 @@ export default function CardPage(): JSX.Element {
           }
 
           {
-            status === EStatus.Ended && (
+            status !== EStatus.Ended && (
             <>
               <Timestamp
                 title={StatusTimeLocales[status]}
@@ -208,7 +213,7 @@ export default function CardPage(): JSX.Element {
               <styles.WrapperButtons>
                 <Button
                   typeButton={typeButton}
-                  // disabled={status !== EStatus.Open}
+                  disabled={status !== EStatus.Open}
                   handleConfirm={() => {
                     if (auction.auctionType === EAuctionType.Auction) {
                     // todo: placeBid
@@ -219,6 +224,16 @@ export default function CardPage(): JSX.Element {
                 />
               </styles.WrapperButtons>
             </>
+            )
+          }
+          {
+            status === EStatus.Ended && auction.winnerAccountId !== config.lotteryContractId && (
+              <styles.WrapperButtons>
+                <Button
+                  typeButton={ETypeButton.WINNER_TICKET}
+                  handleConfirm={() => getWinnerTicket(auction.id)}
+                />
+              </styles.WrapperButtons>
             )
           }
 

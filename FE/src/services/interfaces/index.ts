@@ -129,12 +129,14 @@ export interface NativeContract extends Contract {
   get_auction_account?(params: { auction_id?: number, account_id?: string }): IAuctionAccount | undefined
   has_account?(params: { account_id?: string }): string | undefined
   get_join_fee?(): string | undefined
+  get_winner_ticket?(params: { auction_id?: number }): string | undefined // todo
 }
 
 export enum AuctionContractMethod {
   join = 'join',
   claimNFT = 'claim_nft',
   claimRefund = 'claim_refund',
+  get_winner_ticket = 'get_winner_ticket',
 }
 
 export interface IStorageBalance {

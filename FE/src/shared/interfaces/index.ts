@@ -68,6 +68,7 @@ export interface IFilter {
 export enum ETypeButton {
   PLACE_BID,
   BUY_TICKET,
+  WINNER_TICKET,
 }
 
 export enum EInputHelperText {

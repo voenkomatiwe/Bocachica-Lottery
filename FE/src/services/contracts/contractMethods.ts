@@ -12,6 +12,7 @@ export const nftChangeMethods: string[] = ['ft_transfer_call'];
 export const lotteryChangeMethods: string[] = [
   'claim_refund',
   'claim_nft',
+  'get_winner_ticket',
 ];
 export const lotteryViewMethods: string[] = [
   'get_num_auctions',

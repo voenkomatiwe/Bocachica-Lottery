@@ -50,7 +50,7 @@ export function WalletProvider({ children }:{ children: JSX.Element }) {
     setupNearConnection();
   }, []);
 
-  const requestSignIn = useCallback(() => wallet?.requestSignIn(config.lotteryContractId), [wallet]);
+  const requestSignIn = useCallback(() => wallet?.requestSignIn({ contractId: config.lotteryContractId }), [wallet]);
 
   const isSignedIn = useMemo(() => wallet?.isSignedIn() ?? false, [wallet]);
   const accountId: string = useMemo(() => (isSignedIn ? wallet?.getAccountId() : ''), [isSignedIn, wallet]);

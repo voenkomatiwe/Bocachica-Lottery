@@ -20,7 +20,8 @@
     "apply": "Apply",
     "change": "Change",
     "buyOrDeposit": "Buy / Deposit {{dynamicValue}}",
-    "buyTicket": "Buy Ticket"
+    "buyTicket": "Buy Ticket",
+    "winnerTicket": "Get Winner Ticket"
   },
   "homePage": {
     "title": "NEAR powered NFT Auction"

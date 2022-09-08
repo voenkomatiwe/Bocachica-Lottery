@@ -80,10 +80,17 @@ export function ServiceProvider({ children }:{ children: JSX.Element }) {
     await sendTransaction(transaction);
   }, [lotteryContract, sendTransaction]);
 
+  const getWinnerTicket = useCallback(async (auctionId: number) => {
+    if (!lotteryContract) return;
+    const transaction = lotteryContract.getWinnerTicket(auctionId);
+    await sendTransaction(transaction);
+  }, [lotteryContract, sendTransaction]);
+
   const auctionServiceData = useMemo(() => ({
     lotteryContract,
     claimNFT,
     buyTicket,
+    getWinnerTicket,
   }), [lotteryContract, claimNFT, lotteryContract, buyTicket]);
 
   return (

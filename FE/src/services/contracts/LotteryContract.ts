@@ -158,4 +158,15 @@ export default class LotteryContract {
     const contract = await this.initializeContract(this.contractId);
     return contract.get_tickets?.({ auction_id: auctionId, from_index: fromIndex, limit });
   }
+
+  getWinnerTicket(auctionId: number): Action[] {
+    return [{
+      receiverId: this.contractId,
+      functionCalls: [{
+        methodName: AuctionContractMethod.get_winner_ticket,
+        args: { auction_id: auctionId },
+        amount: ZERO,
+      }],
+    }];
+  }
 }
