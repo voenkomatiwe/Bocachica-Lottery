@@ -179,7 +179,7 @@ function parseTransactions(
         });
       } else if (result.status === StatusType.Failure) {
         clearHash(queryParams);
-        getToast(href, 'toast.bidFailed', ToastType.Error);
+        getToast(href, 'toast.buyTicketFailed', ToastType.Error);
       }
       break;
     case TransactionType.DepositNear:
@@ -193,7 +193,7 @@ function parseTransactions(
         });
       } else if (result.status === StatusType.Failure) {
         clearHash(queryParams);
-        getToast(href, 'toast.bidFailed', ToastType.Error);
+        getToast(href, 'toast.buyTicketFailed', ToastType.Error);
       }
       break;
     case TransactionType.ClaimNFT:

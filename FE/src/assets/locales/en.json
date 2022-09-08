@@ -77,7 +77,7 @@
   "toast" : {
     "transactionFailed": "Transaction failed",
     "userRejected": "User rejected",
-    "bidFailed": "Bid failed",
+    "buyTicketFailed": "Buy ticket failed",
     "claimNFT": "Claim NFT",
     "claimRefund": "Claim refund",
     "copy": "Copied",
