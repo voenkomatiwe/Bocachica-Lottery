@@ -79,13 +79,15 @@ impl Claim for Contract {
 
         let account_id = env::predecessor_account_id();
 
-        let account_auction: AuctionAccount = auction
-            .auction_accounts
-            .get(&account_id)
-            .expect("ERR_ACCOUNT_NOT_FOUND")
-            .into();
+        if auction.auction_type == AuctionType::Auction {
+            let account_auction: AuctionAccount = auction
+                .auction_accounts
+                .get(&account_id)
+                .expect("ERR_ACCOUNT_NOT_FOUND")
+                .into();
 
-        assert_ne!(account_auction.amount.0, 0, "ERR_NO_ALLOCATION");
+            assert_ne!(account_auction.amount.0, 0, "ERR_NO_ALLOCATION");
+        }
         assert_eq!(
             account_id, auction.winner_id,
             "ERR_ONLY_WINNER_CAN_CLAIM_PURCHASE"
