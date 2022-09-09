@@ -10,7 +10,7 @@ export const ONE_MINUTE = 60 * ONE_SECOND;
 
 export const NEAR_TOKEN_ID = 'near';
 export const ONE_YOCTO_NEAR = '0.000000000000000000000001';
-export const FT_GAS = '100000000000000';
+export const FT_GAS = '180000000000000';
 export const STORAGE_TO_REGISTER_FT = '0.1';
 export const STORAGE_TO_REGISTER_WNEAR = '0.00125';
 export const DEFAULT_PAGE_LIMIT = 100;
